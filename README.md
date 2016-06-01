@@ -21,7 +21,7 @@ pc.map(tasks, callback);
 
 **mapLimit** Perform parallel task execution with worker limit:
 ```javascript
-pc.mapLimit(tasksCount, parallelCount, callback);
+pc.mapLimit(tasks, parallelCount, callback);
 ```
 * tasks (Array) - Array of arguments for commands;
 * parallelCount (number) - Count of parallel work tasks;
@@ -29,7 +29,7 @@ pc.mapLimit(tasksCount, parallelCount, callback);
 
 **mapSeries** Perform sequential task execution:
 ```javascript
-pc.mapSeries(tasksCount, callback);
+pc.mapSeries(tasks, callback);
 ```
 * tasks (Array) - Array of arguments for commands;
 * callback (arg, i) => *|Promise - Function that calls on task;
