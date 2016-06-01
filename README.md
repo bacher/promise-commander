@@ -5,7 +5,7 @@ Library for limiting parallel work.
 ### Installation:
 
 ```
-npm install --save promise-commanders
+npm install --save promise-commander
 ```
 
 ### Usage:
