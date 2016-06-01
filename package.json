@@ -1,0 +1,33 @@
+{
+  "name": "promise-commander",
+  "version": "0.1.0",
+  "description": "",
+  "engines": {
+    "node": ">=0.12"
+  },
+  "main": "promise-commander.js",
+  "scripts": {
+    "test": "mocha tests/main.js"
+  },
+  "keywords": [
+    "js",
+    "library"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bacher/promise-commander"
+  },
+  "author": {
+    "name": "Ilya 'Bacher' Lebedev",
+    "email": "bacherko@gmail.com"
+  },
+  "license": "GPL-2.0",
+  "files": [
+    "promise-commander.js",
+    "tests/main.js"
+  ],
+  "devDependencies": {
+    "mocha": "^2.3.3",
+    "chai": "^3.4.0"
+  }
+}

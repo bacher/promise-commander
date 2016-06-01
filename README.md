@@ -12,30 +12,37 @@ npm install --save promise-commanders
 
 #### API:
 
+**map** Perform parallel task execution:
 ```javascript
 pc.map(tasks, callback);
 ```
-Perform parallel task execution.
 * tasks (Array) - Array of arguments for commands;
 * callback: (arg, i) => *|Promise - Function that calls on task;
 
+**mapLimit** Perform parallel task execution with worker limit:
 ```javascript
 pc.mapLimit(tasksCount, parallelCount, callback);
 ```
-Perform parallel task execution with worker limit.
 * tasks (Array) - Array of arguments for commands;
 * parallelCount (number) - Count of parallel work tasks;
 * callback (arg, i) => *|Promise - Function that calls on task;
 
+**mapSeries** Perform sequential task execution:
 ```javascript
 pc.mapSeries(tasksCount, callback);
 ```
-Perform sequential task execution.
 * tasks (Array) - Array of arguments for commands;
 * callback (arg, i) => *|Promise - Function that calls on task;
 
 
 #### Example:
 ```javascript
-pc.mapLimit([1, 2, 3], value => return new Promise(resolve => setTimeout(resolve, 10).then(() => console.log('OK'));
+pc.mapLimit([1, 2, 3], 2, value => {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            console.log(value);
+            resolve();
+        }, 10);
+    });
+}).then(() => console.log('OK'));
 ```
