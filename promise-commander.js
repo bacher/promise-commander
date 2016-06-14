@@ -1,7 +1,19 @@
 
-var CP = module.exports = {
+var PC = module.exports = {
+    eachSeries(tasks, callback) {
+        return PC.mapSeries(tasks, callback).then(noop);
+    },
+
+    eachLimit(tasks, parallelCount, callback) {
+        return PC.mapLimit(tasks, parallelCount, callback).then(noop);
+    },
+
+    each(tasks, callback) {
+        return PC.map(tasks,callback).then(noop);
+    },
+
     mapSeries(tasks, callback) {
-        return CP.mapLimit(tasks, 1, callback);
+        return PC.mapLimit(tasks, 1, callback);
     },
 
     mapLimit(tasks, parallelCount, callback) {
@@ -14,17 +26,17 @@ var CP = module.exports = {
         } else {
             return new Promise(function(resolve, reject) {
                 var state = {
-                    tasks,
-                    allCount: tasks.length,
-                    parallelCount,
-                    callback,
-                    i: 0,
-                    running: 0,
-                    result: [],
-                    error: false,
-                    resolve,
-                    reject,
-                    inWhile: false
+                    tasks:         tasks,
+                    allCount:      tasks.length,
+                    parallelCount: parallelCount,
+                    callback:      callback,
+                    i:             0,
+                    running:       0,
+                    result:        [],
+                    error:         false,
+                    resolve:       resolve,
+                    reject:        reject,
+                    inWhile:       false
                 };
 
                 checkNext(state);
@@ -102,3 +114,5 @@ function next(state, i, err, res) {
         }
     }
 }
+
+function noop() {}

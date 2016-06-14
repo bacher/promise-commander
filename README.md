@@ -10,34 +10,44 @@ npm install --save promise-commander
 
 ### Usage:
 
+PC has 3 groups of method (parallel, limit, series), each group contains **"each"** and **"map"** variant.
+
 #### API:
 
-**map** Perform parallel task execution:
+**each** Perform parallel task execution.
+**map** Perform parallel task execution and return results:
 ```javascript
-pc.map(tasks, callback);
+pc.each(tasks, iterationCallback).then(() => ...);
+pc.map(tasks, iterationCallback).then(results => ...);
 ```
 * tasks (Array) - Array of arguments for commands;
-* callback: (arg, i) => *|Promise - Function that calls on task;
+* iterationCallback: (arg, i) => *|Promise - Function that calls on task;
 
-**mapLimit** Perform parallel task execution with worker limit:
+**eachLimit** Perform parallel task execution with worker limit.
+**mapLimit** Perform parallel task execution with worker limit and return results:
 ```javascript
-pc.mapLimit(tasks, parallelCount, callback);
+pc.eachLimit(tasks, parallelCount, iterationCallback).then(() => ...);
+pc.mapLimit(tasks, parallelCount, iterationCallback).then(results => ...);
 ```
 * tasks (Array) - Array of arguments for commands;
 * parallelCount (number) - Count of parallel work tasks;
-* callback (arg, i) => *|Promise - Function that calls on task;
+* iterationCallback (arg, i) => *|Promise - Function that calls on task;
 
-**mapSeries** Perform sequential task execution:
+**eachSeries** Perform sequential task execution.
+**mapSeries** Perform sequential task execution and return results:
 ```javascript
-pc.mapSeries(tasks, callback);
+pc.eachSeries(tasks, iterationCallback).then(() => ...);
+pc.mapSeries(tasks, iterationCallback).then(results => ...);
 ```
 * tasks (Array) - Array of arguments for commands;
-* callback (arg, i) => *|Promise - Function that calls on task;
+* iterationCallback (arg, i) => *|Promise - Function that calls on task;
 
 
 #### Example:
 ```javascript
-pc.mapLimit([1, 2, 3], 2, value => {
+var PC = require('promise-commander');
+
+PC.mapLimit([1, 2, 3], 2, value => {
     return new Promise(resolve => {
         setTimeout(() => {
             console.log(value);
