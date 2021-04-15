@@ -24,7 +24,7 @@
   "license": "GPL-2.0",
   "files": [
     "promise-commander.js",
-    "tests/main.js"
+    "README.md"
   ],
   "devDependencies": {
     "mocha": "^2.3.3",
